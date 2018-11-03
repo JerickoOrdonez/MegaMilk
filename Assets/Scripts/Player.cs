@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Player : BoardEntity
 {
-    public int Health;
+    [SerializeField] GameObject[] attacks;
+
+    private void Start()
+    {
+        Debug.Log("tile2DArray: "+ PlayerBoard.current.tile2DArray.GetLength(0));
+        Debug.Log("tile2DArray: " + PlayerBoard.current.tile2DArray.GetLength(1));
+    }
 
     void Update()
     {
@@ -13,21 +19,30 @@ public class Player : BoardEntity
 
     void movePlayer()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && currentPosition.y < 4)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && currentRow < 4)
         {
-            moveInitiate((int)currentPosition.x, (int)currentPosition.y + 1);
+            moveInitiate(currentCol, currentRow + 1);
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && currentPosition.y > 0)
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && currentRow > 0)
         {
-            moveInitiate((int)currentPosition.x, (int)currentPosition.y - 1);
+            moveInitiate(currentCol, (int)currentRow - 1);
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) && currentPosition.x > 0)
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && currentCol > 0)
         {
-            moveInitiate((int)currentPosition.x - 1, (int)currentPosition.y);
+            moveInitiate(currentCol - 1, currentRow);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && currentPosition.x < 3)
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && currentCol < 3)
         {
-            moveInitiate((int)currentPosition.x + 1, (int)currentPosition.y);
+            moveInitiate(currentCol + 1, currentRow);
         }
+        else if (Input.GetKeyDown(KeyCode.Space) && currentRow < 4)
+        {
+            initiateAttack(0, currentRow + 1, currentCol);
+        }
+    }
+
+    void initiateAttack(int i, int startRow, int startCol)
+    {
+        Instantiate(attacks[i]);
     }
 }

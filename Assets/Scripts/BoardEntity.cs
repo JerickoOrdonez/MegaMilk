@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class BoardEntity : MonoBehaviour
 {
-    [SerializeField]protected Vector2 currentPosition;
+    [SerializeField]protected int currentCol = 0;
+    [SerializeField] protected int currentRow = 0;
 
     [SerializeField]int health;
     [SerializeField]int maxHealth = 100;
 
     void Start()
     {
-        moveInitiate((int)currentPosition.x,(int)currentPosition.y);
+        moveInitiate(currentCol, currentRow);
     }
 
 	public void moveInitiate(int i, int j){
         MoveTile tileToMoveTo = PlayerBoard.current.tile2DArray[i, j];
-        MoveTile tileMovedFrom = PlayerBoard.current.tile2DArray[(int)currentPosition.x, (int)currentPosition.y];
+        MoveTile tileMovedFrom = PlayerBoard.current.tile2DArray[currentCol, currentRow];
 
         moveAction(tileToMoveTo, tileMovedFrom, i , j);	
     }
@@ -31,7 +32,8 @@ public class BoardEntity : MonoBehaviour
     {
         if (tileToMoveTo.occupant != null) return;
         transform.position = new Vector3(i, 0, j);
-        currentPosition = new Vector2(i, j);
+        currentCol = i;
+        currentRow = j;
 
         tileMovedFrom.setOccupant(null);
         tileToMoveTo.setOccupant(gameObject);
