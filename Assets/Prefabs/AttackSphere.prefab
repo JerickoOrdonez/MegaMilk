@@ -108,5 +108,4 @@ MonoBehaviour:
   currentRow: 0
   health: 0
   maxHealth: 100
-  attacks: []
-  moveTime: 1
+  moveTime: 0.1

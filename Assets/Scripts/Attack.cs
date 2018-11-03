@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Attack : BoardEntity
 {
-    public float moveTime = 1;
+    public float moveTime = .1f;
     private bool isAlive = true;
 
     public void startAttackMovement(int spawnCol, int spawnRow)
@@ -17,10 +17,12 @@ public class Attack : BoardEntity
     {
         while (isAlive)
         {
-            moveInitiate(currentCol, currentRow + 1);
             yield return new WaitForSeconds(moveTime);
-            if (currentRow > PlayerBoard.current.getRowLimit() - 1) isAlive = false;
+            moveInitiate(currentCol, currentRow + 1);
+            if (currentRow >= PlayerBoard.current.getRowLimit() - 1) isAlive = false;
         }
+
+        yield return new WaitForSeconds(moveTime);
         Destroy(gameObject);
     }
 }

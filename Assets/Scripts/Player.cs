@@ -41,11 +41,11 @@ public class Player : BoardEntity
         }
     }
 
-    void initiateAttack(int i, int startCol, int startRow)
+    void initiateAttack(int attackIndex, int startCol, int startRow)
     {
-        Attack attackComponent = attacks[i].GetComponent<Attack>();
+        GameObject attack = Instantiate(attacks[attackIndex]);
+        Attack attackComponent = attack.GetComponent<Attack>();
 
-        Instantiate(attacks[i]);
         attackComponent.startAttackMovement(startCol, startRow);
     }
 }
