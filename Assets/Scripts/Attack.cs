@@ -2,17 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : BoardEntity
+public class Attack : Player
 {
-    // Start is called before the first frame update
+    public int moveTime;
+
     void Start()
     {
-        
+        StartCoroutine(MyCoroutine());
     }
-
-    // Update is called once per frame
-    void Update()
+    IEnumerator MyCoroutine()
     {
-        
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) && currentPosition.y < 4)
+        {
+            Instantiate(gameObject);
+            for (int i = 0; i < 5; i++)
+            {
+                moveInitiate((int)currentPosition.x, (int)currentPosition.y + 1);
+                yield return new WaitForSeconds(1);
+                if (i == 4) Destroy(gameObject);
+            }
+
+        }
     }
 }
