@@ -6,11 +6,14 @@ public class ShootingAnim : MonoBehaviour
 {
     public Animator anim;
 
-    private KeyCode Space;
-
     void Update()
     {
-        if (Input.GetKeyDown(Space))
-            anim.Play("shoot");
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetBool("param_isShooting", true);
+        }
+
+
+        anim.SetBool("param_isShooting", false);
     }
 }
