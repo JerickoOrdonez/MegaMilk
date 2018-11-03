@@ -16,6 +16,16 @@ public class PlayerBoard : MonoBehaviour
         initializeBoard();
     }
 
+    public int getRowLimit()
+    {
+        return current.tile2DArray.GetLength(1);
+    }
+
+    public int getColLimit()
+    {
+        return current.tile2DArray.GetLength(0);
+    }
+
     void initializeBoard()
     {
         for (int i = 0; i < 4; i++)

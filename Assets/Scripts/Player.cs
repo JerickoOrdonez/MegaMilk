@@ -14,10 +14,10 @@ public class Player : BoardEntity
 
     void Update()
     {
-        movePlayer();
+        playerInputHandler();
     }
 
-    void movePlayer()
+    void playerInputHandler()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && currentRow < 4)
         {
@@ -37,12 +37,15 @@ public class Player : BoardEntity
         }
         else if (Input.GetKeyDown(KeyCode.Space) && currentRow < 4)
         {
-            initiateAttack(0, currentRow + 1, currentCol);
+            initiateAttack(0, currentCol, currentRow + 1);
         }
     }
 
-    void initiateAttack(int i, int startRow, int startCol)
+    void initiateAttack(int i, int startCol, int startRow)
     {
+        Attack attackComponent = attacks[i].GetComponent<Attack>();
+
         Instantiate(attacks[i]);
+        attackComponent.startAttackMovement(startCol, startRow);
     }
 }

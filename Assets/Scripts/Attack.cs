@@ -2,24 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : Player
+public class Attack : BoardEntity
 {
-    public int moveTime;
+    public float moveTime = 1;
+    private bool isAlive = true;
 
-    void Start()
+    public void startAttackMovement(int spawnCol, int spawnRow)
     {
-        StartCoroutine(MyCoroutine());
+        moveInitiate(spawnCol, spawnRow);
+        StartCoroutine(MovementCoroutine());
     }
 
-    IEnumerator MyCoroutine()
+    IEnumerator MovementCoroutine()
     {
-        
-            Instantiate(gameObject);
-            for (int i = 0; i < 5; i++)
-            {
-                moveInitiate(currentCol, currentRow + 1);
-                yield return new WaitForSeconds(1);
-                if (i >= 4) Destroy(gameObject);
-            }
+        while (isAlive)
+        {
+            moveInitiate(currentCol, currentRow + 1);
+            yield return new WaitForSeconds(moveTime);
+            if (currentRow > PlayerBoard.current.getRowLimit() - 1) isAlive = false;
+        }
+        Destroy(gameObject);
     }
 }
