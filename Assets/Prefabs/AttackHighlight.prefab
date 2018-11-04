@@ -12,23 +12,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1556350248695284820}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8418339155417995890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6999389076035707952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3a2086caba2ea5498daf2d0ba8a52e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentCol: 0
-  currentRow: 0
-  health: 0
-  maxHealth: 100
-  moveTime: 0.1
 --- !u!111 &4404985607999350227
 Animation:
   m_ObjectHideFlags: 0
@@ -63,6 +46,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8418339155417995890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999389076035707952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a2086caba2ea5498daf2d0ba8a52e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCol: 0
+  currentRow: 0
+  health: 0
+  maxHealth: 100
+  moveTime: 0.1
+  damage: 1
 --- !u!1001 &1556350248695284820
 PrefabInstance:
   m_ObjectHideFlags: 0
