@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class HealthBar : BoardEntity
+public class HealthBar : MonoBehaviour
 {
     Image healthBar;
+    GameObject healthBarOwner;
 
     void Start()
     {
@@ -14,6 +15,6 @@ public class HealthBar : BoardEntity
     // Update is called once per frame
     void Update()
     {
-        healthBar.fillAmount = health / maxHealth;
+        //healthBar.fillAmount = health / maxHealth;
     }
 }

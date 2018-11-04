@@ -33,7 +33,6 @@ public class PlayerBoard : MonoBehaviour
             for (int row = 0; row < 5; row++)
             {
                 current.tile2DArray[col, row] = new MoveTile(col,row);
-                Debug.Log("t2DArrayMT: " + tile2DArray[col, row]);
 
                 GameObject clone = Instantiate(tilePrefab);
                 clone.transform.position = new Vector3(col,0,row);

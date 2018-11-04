@@ -15,6 +15,6 @@ public class MoveTile
     public void setOccupant(GameObject newOccupant)
     {
         occupant = newOccupant;
-        Debug.Log($"Occupant for MT({position.x},{position.y}) is {occupant}");
+        //Debug.Log($"Occupant for MT({position.x},{position.y}) is {occupant}");
     }
 }

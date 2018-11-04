@@ -7,8 +7,8 @@ public class BoardEntity : MonoBehaviour
     [SerializeField]protected int currentCol = 0;
     [SerializeField] protected int currentRow = 0;
 
-    [SerializeField]int health;
-    [SerializeField]int maxHealth = 100;
+    [SerializeField]protected int health;
+    [SerializeField]protected int maxHealth = 100;
 
     void Start()
     {
@@ -52,7 +52,7 @@ public class BoardEntity : MonoBehaviour
         tileToMoveTo.setOccupant(gameObject);
     }
 
-    public void TakeDamage(int damageAmt)
+    public virtual void TakeDamage(int damageAmt)
     {
         health -= damageAmt;
         if(health <= 0)
@@ -61,8 +61,9 @@ public class BoardEntity : MonoBehaviour
         }
     }
 
-    void Die()
+    protected void Die()
     {
-        DestroyImmediate(gameObject);
+        PlayerBoard.current.tile2DArray[currentCol, currentRow].occupant = null;
+        Destroy(gameObject,.5f);
     }
 }
