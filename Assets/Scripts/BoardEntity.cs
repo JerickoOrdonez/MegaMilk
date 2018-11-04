@@ -32,9 +32,9 @@ public class BoardEntity : MonoBehaviour
     }
 
     /// <summary>
-    /// This function determines what happens in the event of a movement collision , and also actually 
-    /// performs the movement. A movement collision is when the BoardEntity that calls this tries to
-    /// move into an occupied space.
+    /// This function determines what happens in the event of a movement collision , and then calls
+    /// moveOBjectToTile to handle the movement. A movement collision is when the BoardEntity that 
+    /// calls this tries to move into an occupied space.
     /// </summary>
     public virtual void moveAction(MoveTile tileToMoveTo, MoveTile tileMovedFrom, int col, int row)
     {

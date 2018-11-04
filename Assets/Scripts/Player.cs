@@ -13,7 +13,7 @@ public class Player : BoardEntity
 
     void playerInputHandler()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && currentRow < 4)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && currentRow < PlayerBoard.current.getRowLimit() - 1)
         {
             moveInitiate(currentCol, currentRow + 1);
         }
@@ -25,11 +25,11 @@ public class Player : BoardEntity
         {
             moveInitiate(currentCol - 1, currentRow);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && currentCol < 3)
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && currentCol < PlayerBoard.current.getColLimit() - 1)
         {
             moveInitiate(currentCol + 1, currentRow);
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && currentRow < 4)
+        else if (Input.GetKeyDown(KeyCode.Space) && currentRow < PlayerBoard.current.getRowLimit() - 1)
         {
             initiateAttack(0, currentCol, currentRow + 1);
         }

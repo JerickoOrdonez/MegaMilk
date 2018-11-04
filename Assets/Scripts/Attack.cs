@@ -4,13 +4,32 @@ using UnityEngine;
 
 public class Attack : BoardEntity
 {
-    public float moveTime = .1f;
+    [SerializeField]float moveTime = .1f;
+    [SerializeField]int damage = 50;
+
     private bool isAlive = true;
 
     public void startAttackMovement(int spawnCol, int spawnRow)
     {
         moveInitiate(spawnCol, spawnRow);
         StartCoroutine(MovementCoroutine());
+    }
+
+    public override void moveAction(MoveTile tileToMoveTo, MoveTile tileMovedFrom, int col, int row)
+    {
+        if (tileToMoveTo.occupant == null)
+        {
+            moveObjectToTile(tileToMoveTo, tileMovedFrom, col, row);
+        }
+        else if (tileToMoveTo.occupant.tag == "Enemy")
+        {
+            tileToMoveTo.occupant.GetComponent<BoardEntity>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
+        //else if(tileToMoveTo.occupant)
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     IEnumerator MovementCoroutine()
