@@ -6,12 +6,6 @@ public class Player : BoardEntity
 {
     [SerializeField] GameObject[] attacks;
 
-    private void Start()
-    {
-        Debug.Log("tile2DArray: "+ PlayerBoard.current.tile2DArray.GetLength(0));
-        Debug.Log("tile2DArray: " + PlayerBoard.current.tile2DArray.GetLength(1));
-    }
-
     void Update()
     {
         playerInputHandler();

@@ -15,27 +15,54 @@ public class BoardEntity : MonoBehaviour
         moveInitiate(currentCol, currentRow);
     }
 
-	public void moveInitiate(int i, int j){
-        MoveTile tileToMoveTo = PlayerBoard.current.tile2DArray[i, j];
+	public void moveInitiate(int col, int row){
+        MoveTile tileToMoveTo = PlayerBoard.current.tile2DArray[col, row];
         MoveTile tileMovedFrom = PlayerBoard.current.tile2DArray[currentCol, currentRow];
 
-        moveAction(tileToMoveTo, tileMovedFrom, i , j);	
+        moveBehavior(tileToMoveTo, tileMovedFrom, col , row);	
     }
 
-    //Consider using this as an inheritable function to define custom behaviors
-    public void moveAction(MoveTile tileToMoveTo, MoveTile tileMovedFrom, int i, int j)
+    /// <summary>
+    /// This function determines how a BoardEntity should move. By default, it simply calls moveAction and passes
+    /// its params along. This is separated from moveAction so that each can be overridden individually.
+    /// </summary>
+    public virtual void moveBehavior(MoveTile tileToMoveTo, MoveTile tileMovedFrom, int col, int row)
     {
-        moveObjectToTile(tileToMoveTo, tileMovedFrom, i, j);
+        moveAction(tileToMoveTo, tileMovedFrom, col, row);
     }
 
-    public void moveObjectToTile(MoveTile tileToMoveTo, MoveTile tileMovedFrom, int i, int j)
+    /// <summary>
+    /// This function determines what happens in the event of a movement collision , and also actually 
+    /// performs the movement. A movement collision is when the BoardEntity that calls this tries to
+    /// move into an occupied space.
+    /// </summary>
+    public virtual void moveAction(MoveTile tileToMoveTo, MoveTile tileMovedFrom, int col, int row)
     {
         if (tileToMoveTo.occupant != null) return;
-        transform.position = new Vector3(i, 0, j);
-        currentCol = i;
-        currentRow = j;
+        moveObjectToTile(tileToMoveTo, tileMovedFrom, col, row);
+    }
+
+    public void moveObjectToTile(MoveTile tileToMoveTo, MoveTile tileMovedFrom, int col, int row)
+    {
+        transform.position = new Vector3(col, 0, row);
+        currentCol = col;
+        currentRow = row;
 
         tileMovedFrom.setOccupant(null);
         tileToMoveTo.setOccupant(gameObject);
+    }
+
+    public void TakeDamage(int damageAmt)
+    {
+        health -= damageAmt;
+        if(health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        DestroyImmediate(gameObject);
     }
 }

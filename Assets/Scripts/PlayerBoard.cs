@@ -16,27 +16,27 @@ public class PlayerBoard : MonoBehaviour
         initializeBoard();
     }
 
-    public int getRowLimit()
-    {
-        return current.tile2DArray.GetLength(1);
-    }
-
     public int getColLimit()
     {
         return current.tile2DArray.GetLength(0);
     }
 
+    public int getRowLimit()
+    {
+        return current.tile2DArray.GetLength(1);
+    }
+
     void initializeBoard()
     {
-        for (int i = 0; i < 4; i++)
+        for (int col = 0; col < 4; col++)
         {
-            for (int j = 0; j < 5; j++)
+            for (int row = 0; row < 5; row++)
             {
-                current.tile2DArray[i, j] = new MoveTile(i,j);
-                Debug.Log("t2DArrayMT: " + tile2DArray[i, j]);
+                current.tile2DArray[col, row] = new MoveTile(col,row);
+                Debug.Log("t2DArrayMT: " + tile2DArray[col, row]);
 
                 GameObject clone = Instantiate(tilePrefab);
-                clone.transform.position = new Vector3(i,0,j);
+                clone.transform.position = new Vector3(col,0,row);
             }
         }
     }
