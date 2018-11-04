@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : BoardEntity
+public class Player : EntityWithStatus
 {
     [SerializeField] GameObject[] attacks;
 
