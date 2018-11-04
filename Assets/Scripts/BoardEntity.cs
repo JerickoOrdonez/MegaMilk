@@ -16,6 +16,7 @@ public class BoardEntity : MonoBehaviour
     }
 
 	public void moveInitiate(int col, int row){
+        if(col >= PlayerBoard.current.getColLimit() || row >= PlayerBoard.current.getRowLimit())return; 
         MoveTile tileToMoveTo = PlayerBoard.current.tile2DArray[col, row];
         MoveTile tileMovedFrom = PlayerBoard.current.tile2DArray[currentCol, currentRow];
 

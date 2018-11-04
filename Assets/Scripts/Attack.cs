@@ -26,10 +26,10 @@ public class Attack : BoardEntity
             tileToMoveTo.occupant.GetComponent<BoardEntity>().TakeDamage(damage);
             Destroy(gameObject);
         }
-        //else if(tileToMoveTo.occupant)
-        //{
-        //    Destroy(gameObject);
-        //}
+        else if (tileToMoveTo.occupant != null)
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator MovementCoroutine()

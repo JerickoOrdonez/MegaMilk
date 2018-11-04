@@ -7,9 +7,9 @@ public class MoveTile
     public Vector2 position;
     public GameObject occupant = null;
 
-    public MoveTile(int i , int j)
+    public MoveTile(int col , int row)
     {
-        position = new Vector2(i,j);
+        position = new Vector2(col,row);
     }
 
     public void setOccupant(GameObject newOccupant)
